@@ -12,15 +12,20 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
-# Rebuild native modules
+# Force reinstall and rebuild native modules
+RUN npm uninstall @swc/core || true
+RUN npm install @swc/core --force
 RUN npm rebuild @swc/core better-sqlite3
 
 # Copy source code
 COPY . .
 
-# Build Strapi
+# Build Strapi with memory limit
 ENV NODE_OPTIONS=--max-old-space-size=4096
-RUN npm run build
+RUN npm run build || (npm rebuild @swc/core && npm run build)
+
+# Expose port
+EXPOSE 1337
 
 # Start Strapi
 CMD ["npm", "start"]
