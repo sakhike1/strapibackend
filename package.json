@@ -4,7 +4,7 @@
   "private": true,
   "description": "A Strapi application",
   "scripts": {
-    "build": "npm rebuild @swc/core && strapi build",
+    "build": "npm rebuild @swc/core better-sqlite3 && NODE_OPTIONS=--max-old-space-size=4096 strapi build",
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
