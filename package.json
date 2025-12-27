@@ -14,8 +14,7 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "postinstall": "npm run build"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.29.0",
@@ -38,7 +37,7 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=18.0.0 <=22.x.x",
+    "node": ">=20.0.0 <=24.x.x",
     "npm": ">=6.0.0"
   },
   "strapi": {
