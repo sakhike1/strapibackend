@@ -1,0 +1,42 @@
+=== Strapi Environment Variables for Afrihost ===
+
+Copy these environment variables to your Afrihost cPanel Node.js App Settings:
+
+=== Required Environment Variables ===
+
+NODE_ENV=production
+HOST=0.0.0.0
+PORT=<CHECK_CPANEL_ASSIGNED_PORT>
+
+=== Security Keys (Generated) ===
+
+APP_KEYS=wv3D0PjEiw3piiqmE7IVa7H1oubcby6EbltDGg1eWN0=
+API_TOKEN_SALT=tg8klNVYUZkax3yNpskHkn3mEseVeKkzwwqeAE4xwDM=
+ADMIN_JWT_SECRET=zuFsNtJowmR48zfckMJe30mSot+KcsqzgW+bcS7fDGA=
+TRANSFER_TOKEN_SALT=HSw7wWGvmaAHWkMhFgQJptkpKd5dPi1GRVP4dcSqbcM=
+ENCRYPTION_KEY=3yJ96NTYJyA5gtpkK0Bc0yXGy/ng+2rPxKK4ZabCEjk=
+
+=== Database Configuration (MySQL - Update with your actual values) ===
+
+DATABASE_CLIENT=mysql
+DATABASE_HOST=localhost
+DATABASE_PORT=3306
+DATABASE_NAME=<YOUR_DATABASE_NAME>
+DATABASE_USERNAME=<YOUR_DATABASE_USER>
+DATABASE_PASSWORD=<YOUR_DATABASE_PASSWORD>
+
+=== Instructions ===
+
+1. In cPanel, go to "Node.js Selector" or "Setup Node.js App"
+2. Click on your Strapi application
+3. Add each environment variable above
+4. IMPORTANT: Replace <CHECK_CPANEL_ASSIGNED_PORT> with the port number shown in your Node.js app settings
+5. IMPORTANT: Replace database placeholders with your actual MySQL database credentials created in cPanel
+
+=== Notes ===
+
+- The PORT will be assigned automatically by cPanel - check your Node.js app settings for the actual port number
+- Database credentials should match what you created in cPanel's MySQL Databases section
+- Never commit these values to git
+- Keep these values secure
+

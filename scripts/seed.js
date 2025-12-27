@@ -3,7 +3,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const mime = require('mime-types');
-const { categories, authors, articles, global, about } = require('../data/data.json');
+const { categories, authors, articles, global, about, products } = require('../data/data.json');
 
 async function seedExampleApp() {
   const shouldImportSeedData = await isFirstRun();
@@ -184,6 +184,41 @@ async function importArticles() {
   }
 }
 
+async function importProducts() {
+  if (!Array.isArray(products) || products.length === 0) {
+    return;
+  }
+
+  for (const product of products) {
+    const uploadedImages = product.images?.length
+      ? await checkFileExistsBeforeUpload(product.images)
+      : [];
+    const imageList = Array.isArray(uploadedImages)
+      ? uploadedImages
+      : uploadedImages
+      ? [uploadedImages]
+      : [];
+
+    const uploadedVideo = product.video
+      ? await checkFileExistsBeforeUpload([product.video])
+      : null;
+
+    await createEntry({
+      model: 'product',
+      entry: {
+        title: product.title,
+        slug: product.slug,
+        price: product.price,
+        description: product.description,
+        featured: Boolean(product.featured),
+        images: imageList,
+        video: uploadedVideo,
+        publishedAt: Date.now(),
+      },
+    });
+  }
+}
+
 async function importGlobal() {
   const favicon = await checkFileExistsBeforeUpload(['favicon.png']);
   const shareImage = await checkFileExistsBeforeUpload(['default-image.png']);
@@ -244,6 +279,7 @@ async function importSeedData() {
     author: ['find', 'findOne'],
     global: ['find', 'findOne'],
     about: ['find', 'findOne'],
+    product: ['find', 'findOne'],
   });
 
   // Create all entries
@@ -252,6 +288,7 @@ async function importSeedData() {
   await importArticles();
   await importGlobal();
   await importAbout();
+  await importProducts();
 }
 
 async function main() {

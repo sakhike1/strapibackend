@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "search_queries",
+  "info": {
+    "singularName": "search-query",
+    "pluralName": "search-queries",
+    "displayName": "Search Query",
+    "description": "Track client search queries from the frontend app"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "searchQuery": {
+      "type": "string",
+      "required": true
+    },
+    "source": {
+      "type": "string",
+      "default": "app"
+    },
+    "resultsCount": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "searchType": {
+      "type": "string",
+      "default": "general"
+    }
+  }
+}
+
+

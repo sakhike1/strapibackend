@@ -237,5 +237,34 @@
         }
       ]
     }
+  ],
+  "products": [
+    {
+      "title": "Classic Black Tee",
+      "slug": "classic-black-tee",
+      "price": 29.99,
+      "description": "Soft cotton tee with a relaxed fit available in jet black.",
+      "images": ["black1.png", "black2.png", "black3.png"],
+      "video": "background.mp4",
+      "featured": true
+    },
+    {
+      "title": "Everyday White Hoodie",
+      "slug": "everyday-white-hoodie",
+      "price": 64.5,
+      "description": "Cozy fleece lined hoodie designed for everyday layering.",
+      "images": ["white1.png", "white2.png", "white3.png"],
+      "video": "background.mp4",
+      "featured": true
+    },
+    {
+      "title": "Electric Blue Windbreaker",
+      "slug": "electric-blue-windbreaker",
+      "price": 82,
+      "description": "Lightweight windbreaker with water resistant coating.",
+      "images": ["blue1.png", "blue2.png", "blue3.png"],
+      "video": "background.mp4",
+      "featured": false
+    }
   ]
 }

@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "custom_design_requests",
+  "info": {
+    "singularName": "custom-design-request",
+    "pluralName": "custom-design-requests",
+    "displayName": "Custom Design Request",
+    "description": "Custom design requests from customers"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "category": {
+      "type": "string",
+      "required": true
+    },
+    "budget": {
+      "type": "string",
+      "required": true
+    },
+    "timeline": {
+      "type": "string",
+      "required": true
+    },
+    "materials": {
+      "type": "json"
+    },
+    "colors": {
+      "type": "json"
+    },
+    "size": {
+      "type": "string",
+      "required": true
+    },
+    "additionalNotes": {
+      "type": "text"
+    },
+    "referenceImages": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images", "files"]
+    },
+    "userId": {
+      "type": "string",
+      "required": true
+    },
+    "userEmail": {
+      "type": "email"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "reviewed", "approved", "in_progress", "completed", "rejected"],
+      "default": "pending",
+      "required": true
+    },
+    "adminNotes": {
+      "type": "richtext"
+    },
+    "estimatedPrice": {
+      "type": "decimal"
+    },
+    "estimatedDelivery": {
+      "type": "datetime"
+    },
+    "submittedAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "source": {
+      "type": "string",
+      "default": "website"
+    }
+  }
+}
+
+
