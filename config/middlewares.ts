@@ -5,6 +5,7 @@ export default [
   {
     name: 'strapi::cors',
     config: {
+      enabled: true,
       origin: [
         // Development URLs
         'http://localhost:3000',
@@ -17,7 +18,21 @@ export default [
         // For development only - remove '*' in production and add specific domains
         ...(process.env.NODE_ENV === 'development' ? ['*'] : []),
       ],
+      headers: [
+        'Content-Type',
+        'Authorization',
+        'Origin',
+        'X-Requested-With',
+        'Accept',
+        'Accept-Version',
+        'Content-Length',
+        'Content-MD5',
+        'Date',
+        'X-Api-Version',
+      ],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
       credentials: true,
+      maxAge: 86400, // 24 hours
     },
   },
   'strapi::poweredBy',
