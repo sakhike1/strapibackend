@@ -1,38 +1,44 @@
 export default [
   'strapi::logger',
   'strapi::errors',
-  'strapi::security',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'connect-src': ["'self'", 'https:'],
+          'img-src': ["'self'", 'data:', 'blob:', 'https:'],
+          'media-src': ["'self'", 'data:', 'blob:', 'https:'],
+          upgradeInsecureRequests: null,
+        },
+      },
+    },
+  },
   {
     name: 'strapi::cors',
     config: {
       enabled: true,
       origin: [
         // Development URLs
-        'http://localhost:3000',
-        'http://localhost:3001',
         'http://localhost:5173',
         'http://localhost:5174',
+        'http://localhost:5175',
+        'http://localhost:5176',
+        'http://localhost:5177',
+        'http://localhost:5178',
         // Production URLs
         'https://skipaman.co.za',
         'https://www.skipaman.co.za',
-        // For development only - remove '*' in production and add specific domains
-        ...(process.env.NODE_ENV === 'development' ? ['*'] : []),
       ],
       headers: [
         'Content-Type',
         'Authorization',
-        'Origin',
+        'X-Frame-Options',
         'X-Requested-With',
-        'Accept',
-        'Accept-Version',
-        'Content-Length',
-        'Content-MD5',
-        'Date',
-        'X-Api-Version',
       ],
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Important: Include OPTIONS for preflight
       credentials: true,
-      maxAge: 86400, // 24 hours
     },
   },
   'strapi::poweredBy',
