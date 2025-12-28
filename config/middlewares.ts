@@ -36,9 +36,12 @@ export default [
         'Authorization',
         'X-Frame-Options',
         'X-Requested-With',
+        'Origin',
+        'Accept',
       ],
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Important: Include OPTIONS for preflight
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD'],
       credentials: true,
+      maxAge: 86400,
     },
   },
   'strapi::poweredBy',
