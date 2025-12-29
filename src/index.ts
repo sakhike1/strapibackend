@@ -8,13 +8,14 @@ async function ensureProductPermissions(strapi: Core.Strapi) {
     });
 
   if (!publicRole) {
+    console.log('⚠️ Public role not found');
     return;
   }
 
   const actions = ['find', 'findOne'];
 
   for (const action of actions) {
-    const exists = await strapi
+    const existing = await strapi
       .query('plugin::users-permissions.permission')
       .findOne({
         where: {
@@ -23,13 +24,16 @@ async function ensureProductPermissions(strapi: Core.Strapi) {
         },
       });
 
-    if (!exists) {
+    if (!existing) {
       await strapi.query('plugin::users-permissions.permission').create({
         data: {
           action: `api::product.product.${action}`,
           role: publicRole.id,
         },
       });
+      console.log(`✅ Created Product ${action} permission for public role`);
+    } else {
+      console.log(`✅ Product ${action} permission already exists for public role`);
     }
   }
 }
