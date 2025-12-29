@@ -8,9 +8,11 @@ async function ensureProductPermissions(strapi: Core.Strapi) {
     });
 
   if (!publicRole) {
-    console.log('⚠️ Public role not found');
+    console.log('⚠️ Public role not found - cannot set Product permissions');
     return;
   }
+  
+  console.log(`✅ Public role found (ID: ${publicRole.id})`);
 
   const actions = ['find', 'findOne'];
 
@@ -31,7 +33,7 @@ async function ensureProductPermissions(strapi: Core.Strapi) {
           role: publicRole.id,
         },
       });
-      console.log(`✅ Created Product ${action} permission for public role`);
+      console.log(`✅ Created Product ${action} permission for public role (ID: ${publicRole.id})`);
     } else {
       console.log(`✅ Product ${action} permission already exists for public role`);
     }
@@ -196,18 +198,43 @@ async function ensureOrderPermissions(strapi: Core.Strapi) {
 }
 
 export default {
-  register() {},
+  register() {
+    console.log('📝 Bootstrap register() called');
+  },
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
-    console.log('🚀 Starting bootstrap - setting permissions...');
+    console.log('🚀 ============================================');
+    console.log('🚀 BOOTSTRAP STARTING - Setting permissions...');
+    console.log('🚀 ============================================');
+    
     try {
+      console.log('📦 Step 1: Setting Product permissions...');
       await ensureProductPermissions(strapi);
+      console.log('✅ Step 1 complete: Product permissions set');
+      
+      console.log('📦 Step 2: Setting Newsletter permissions...');
       await ensureNewsletterSubscriptionPermissions(strapi);
+      console.log('✅ Step 2 complete: Newsletter permissions set');
+      
+      console.log('📦 Step 3: Setting SearchQuery permissions...');
       await ensureSearchQueryPermissions(strapi);
+      console.log('✅ Step 3 complete: SearchQuery permissions set');
+      
+      console.log('📦 Step 4: Setting CustomDesignRequest permissions...');
       await ensureCustomDesignRequestPermissions(strapi);
+      console.log('✅ Step 4 complete: CustomDesignRequest permissions set');
+      
+      console.log('📦 Step 5: Setting Order permissions...');
       await ensureOrderPermissions(strapi);
-      console.log('✅ Bootstrap completed - all permissions set');
+      console.log('✅ Step 5 complete: Order permissions set');
+      
+      console.log('🚀 ============================================');
+      console.log('✅ BOOTSTRAP COMPLETED - All permissions set!');
+      console.log('🚀 ============================================');
     } catch (error) {
-      console.error('❌ Bootstrap error:', error);
+      console.error('❌ ============================================');
+      console.error('❌ BOOTSTRAP ERROR:', error);
+      console.error('❌ Stack:', error instanceof Error ? error.stack : 'No stack');
+      console.error('❌ ============================================');
     }
   },
 };
