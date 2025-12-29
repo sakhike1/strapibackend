@@ -69,19 +69,41 @@ Follow these steps in order to deploy your Strapi backend to Afrihost.
 - [ ] Create admin account (first time only)
 - [ ] Login and verify admin panel works
 
-## Step 8: Update Frontend Configuration
+## Step 8: Configure Strapi Permissions
+
+**Important:** The bootstrap code in `src/index.ts` should automatically set Product permissions when Strapi starts. However, manual verification is recommended to ensure products are accessible without authentication.
+
+- [ ] Navigate to: **Settings → Users & Permissions Plugin → Roles → Public**
+- [ ] Find **"Product"** in the permissions list
+- [ ] Enable the following permissions for Product:
+  - [ ] **find** (allows fetching list of products)
+  - [ ] **findOne** (allows fetching a single product)
+- [ ] Click **"Save"** (top right)
+- [ ] Verify bootstrap code ran by checking application logs for:
+  - `✅ Created Product find permission for public role`
+  - `✅ Created Product findOne permission for public role`
+  - OR `✅ Product find permission already exists for public role`
+
+**Note:** If bootstrap code ran successfully, permissions may already be set. The manual check ensures they're configured correctly.
+
+## Step 9: Update Frontend Configuration
 
 - [ ] Note your deployed Strapi API URL
 - [ ] Update frontend `.env.production` (see `FRONTEND_ENV_TEMPLATE.env.production`)
 - [ ] Set `VITE_STRAPI_URL` (or equivalent) to your Strapi URL
 - [ ] Rebuild and redeploy frontend
 
-## Step 9: Test Integration
+## Step 10: Test Integration
 
 - [ ] Test API calls from frontend to Strapi
 - [ ] Verify CORS is working (no CORS errors in browser console)
 - [ ] Test user login/authentication
 - [ ] Test API endpoints
+- [ ] **Verify Product API access:**
+  - [ ] Products load for anonymous (not logged in) users
+  - [ ] Products load for logged-in users
+  - [ ] No 401 errors appear in the browser console
+  - [ ] Test products endpoint directly: `https://api.skipaman.co.za/api/products?populate=*&pagination[pageSize]=10`
 
 ## Troubleshooting
 
@@ -106,10 +128,48 @@ Follow these steps in order to deploy your Strapi backend to Afrihost.
 - Check `public/build` folder exists
 - Clear browser cache
 
+### 401 Unauthorized errors for Products
+If you're getting 401 errors when trying to access products:
+
+1. **Check if bootstrap code ran:**
+   - View application logs in Node.js app settings
+   - Look for: `🚀 BOOTSTRAP STARTING - Setting permissions...`
+   - If bootstrap didn't run, restart the application
+
+2. **Manually set permissions via Strapi Admin:**
+   - Go to: **Settings → Users & Permissions Plugin → Roles → Public**
+   - Find **"Product"** in the permissions list
+   - Enable **"find"** and **"findOne"** checkboxes
+   - Click **"Save"**
+
+3. **Verify permissions are set:**
+   - Test products API in browser console:
+     ```javascript
+     fetch('https://api.skipaman.co.za/api/products?populate=*&pagination[pageSize]=10')
+       .then(r => {
+         console.log('Status:', r.status);
+         if (r.status === 200) {
+           console.log('✅ Products are publicly accessible!');
+         } else {
+           console.error('❌ Still getting 401 - permissions not set');
+         }
+       });
+     ```
+   - Expected: Status 200 = Fixed, Status 401 = Permissions still need to be set
+
+4. **After fixing permissions:**
+   - Restart the Strapi application
+   - Clear browser cache
+   - Test again from frontend
+
+**Note:** The bootstrap code in `src/index.ts` should automatically set these permissions on startup. If 401 errors persist, the bootstrap may not have run or encountered an error.
+
 ## Important Notes
 
 - The application will run automatically using `npm start` (production mode)
 - No need to run `npm run dev` - it's production!
 - Application auto-restarts on server reboot
 - Keep environment variables secure - never commit to git
+
+
 
