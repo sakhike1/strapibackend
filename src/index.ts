@@ -198,10 +198,16 @@ async function ensureOrderPermissions(strapi: Core.Strapi) {
 export default {
   register() {},
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
-    await ensureProductPermissions(strapi);
-    await ensureNewsletterSubscriptionPermissions(strapi);
-    await ensureSearchQueryPermissions(strapi);
-    await ensureCustomDesignRequestPermissions(strapi);
-    await ensureOrderPermissions(strapi);
+    console.log('🚀 Starting bootstrap - setting permissions...');
+    try {
+      await ensureProductPermissions(strapi);
+      await ensureNewsletterSubscriptionPermissions(strapi);
+      await ensureSearchQueryPermissions(strapi);
+      await ensureCustomDesignRequestPermissions(strapi);
+      await ensureOrderPermissions(strapi);
+      console.log('✅ Bootstrap completed - all permissions set');
+    } catch (error) {
+      console.error('❌ Bootstrap error:', error);
+    }
   },
 };
