@@ -63,3 +63,5 @@ The bootstrap code in `src/index.ts` runs when Strapi starts. If Railway hasn't 
 
 After restarting, check the logs and test the API. The permissions should be set automatically.
 
+
+

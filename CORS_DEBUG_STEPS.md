@@ -113,3 +113,5 @@ If this doesn't work, the CORS middleware isn't loading at all.
 
 If it still doesn't work after restart, there might be a deeper issue with how Strapi is loading the middleware configuration.
 
+
+

@@ -47,3 +47,5 @@ npm start
 3. Start Strapi successfully
 4. Admin panel will work from pre-built files
 
+
+

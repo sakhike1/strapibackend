@@ -63,3 +63,5 @@ Plus database variables (PostgreSQL or MySQL).
 - Verify the value is exactly: `zuFsNtJowmR48zfckMJe30mSot+KcsqzgW+bcS7fDGA=`
 - Make sure you're adding it to the correct service (your Strapi service, not the database)
 
+
+

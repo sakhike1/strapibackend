@@ -138,3 +138,5 @@ VITE_STRAPI_URL=https://skipaman-api.onrender.com
 3. Update frontend configuration
 4. Test connection
 
+
+

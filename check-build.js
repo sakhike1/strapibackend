@@ -13,3 +13,5 @@ if (fs.existsSync(buildPath)) {
   process.exit(1);
 }
 
+
+

@@ -118,3 +118,5 @@
 - Check `AFRIHOST_DATABASE_SETUP.md` for database issues
 - Review `../CPANEL_DEPLOYMENT_GUIDE.md` for general cPanel guidance
 
+
+

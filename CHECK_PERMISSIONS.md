@@ -51,3 +51,5 @@ The bootstrap code only runs when Strapi starts. Make sure Railway has restarted
 3. Wait 1-2 minutes
 4. Check logs for bootstrap messages
 
+
+

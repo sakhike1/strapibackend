@@ -85,3 +85,5 @@ See the detailed guides:
 - `AFRIHOST_DATABASE_SETUP.md` - Database setup details
 - `../CPANEL_DEPLOYMENT_GUIDE.md` - General cPanel guide
 
+
+

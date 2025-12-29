@@ -93,3 +93,5 @@ Then rebuild and redeploy your frontend.
 - [ ] Frontend updated with Railway URL
 - [ ] Frontend can connect to Strapi API
 
+
+

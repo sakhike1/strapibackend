@@ -70,3 +70,5 @@ DATABASE_PASSWORD=your_strong_password_here
 - Make sure `DATABASE_HOST=localhost` (not 127.0.0.1)
 - Verify `DATABASE_PORT=3306` for MySQL
 
+
+

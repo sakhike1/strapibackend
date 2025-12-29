@@ -26,3 +26,5 @@ But the updated config will use `ADMIN_JWT_SECRET` if `JWT_SECRET` is not set, s
 
 The config now uses `ADMIN_JWT_SECRET` for both admin and users-permissions, which is fine for most use cases. If you want separate secrets, add `JWT_SECRET` as a separate variable.
 
+
+

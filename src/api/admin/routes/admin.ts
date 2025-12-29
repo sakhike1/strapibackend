@@ -11,6 +11,7 @@ export default {
       config: {
         policies: [],
         middlewares: [],
+        auth: false, // Make this endpoint public (no authentication required)
       },
     },
   ],

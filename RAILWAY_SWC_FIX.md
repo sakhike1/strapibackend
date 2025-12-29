@@ -47,3 +47,5 @@ But this is not recommended for production.
 2. If it still fails, update Railway build command to include `npm rebuild @swc/core`
 3. Redeploy and check logs
 
+
+

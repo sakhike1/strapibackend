@@ -66,3 +66,5 @@ If you see bootstrap messages but still get 401:
 
 The bootstrap code will run automatically when Strapi starts. Check the logs to confirm it ran, then test the API.
 
+
+

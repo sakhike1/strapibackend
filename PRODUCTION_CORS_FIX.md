@@ -78,3 +78,5 @@ fetch('https://strapibackend-production-bb58.up.railway.app/api/products?populat
 
 After restarting Railway, both CORS errors and 502 errors should be resolved!
 
+
+
